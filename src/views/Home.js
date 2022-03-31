@@ -25,6 +25,7 @@ function Home({ setCurrentUser }) {
       try {
         const resp = await signupUser(email, password);
         setCurrentUser(resp.email);
+        history.push('/todo');
       } catch (e) {
         setError(e.message);
       }

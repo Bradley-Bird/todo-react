@@ -16,6 +16,10 @@ function Todo() {
       {todos.map((todo) => (
         <p key={todo.id}>{todo.todo}</p>
       ))}
+      <form action="">
+        <input type="text" placeholder="Todo's" />
+        <button>Add Todo</button>
+      </form>
     </div>
   );
 }

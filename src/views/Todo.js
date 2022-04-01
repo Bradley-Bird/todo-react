@@ -8,8 +8,6 @@ function Todo() {
   //this state adds a layer between the typing and the click
   //so that it doesn't update every time you type something in the input
   const [sendTodo, setSendTodo] = useState('');
-  //making state to update false to true
-  const [complete, setComplete] = useState(false);
   useEffect(() => {
     const fetchData = async () => {
       const data = await getTodos();
@@ -25,18 +23,16 @@ function Todo() {
     setSendTodo(newTodo);
     setNewTodo('');
   };
-
-  // const handleComplete = async (e) => {
-  //   setComplete(!complete);
-  //   await updateStatus(e.target.id);
-  // };
+  const check = async (todo) => {
+    await updateStatus(todo.id);
+  };
   return (
     <div>
       {todos.map((todo) => (
         <StyledP
-          className={complete ? 'active' : ''}
+          className={todo.complete === true ? 'active' : ''}
           key={todo.id}
-          onClick={async () => updateStatus(todo.id)}
+          onClick={() => check(todo)}
         >
           {todo.todo}
         </StyledP>
@@ -56,7 +52,7 @@ function Todo() {
 
 const StyledP = styled.p`
   .active {
-    text-decoration: strike;
+    text-decoration: underline;
   }
 `;
 export default Todo;

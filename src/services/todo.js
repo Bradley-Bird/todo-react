@@ -12,7 +12,6 @@ export async function updateTodos(todo) {
 
 export async function updateStatus(id) {
   const tf = await client.from('todos').select('complete').match({ id }).single();
-
   if (tf.data.complete === false) {
     const resp = await client.from('todos').update({ complete: true }).match({ id });
     return checkError(resp);

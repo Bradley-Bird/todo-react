@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getTodos, updateStatus, updateTodos } from '../services/todo';
+import { deleteCompleted, getTodos, updateStatus, updateTodos } from '../services/todo';
 import styled from 'styled-components';
 
 function Todo() {
@@ -28,6 +28,10 @@ function Todo() {
     await updateStatus(todo.id);
     setClicked((prev) => [...prev, todo.id]);
   };
+  const handleDelete = async () => {
+    await deleteCompleted();
+    setClicked([]);
+  };
   return (
     <div>
       <form action="">
@@ -39,6 +43,7 @@ function Todo() {
         />
         <button onClick={handleUpdate}>Add Todo</button>
       </form>
+      <button onClick={handleDelete}>Delete Completed Todos</button>
       {todos.map((todo) => (
         <StyledContainer key={todo.id}>
           <StyledP className={todo.complete === true ? 'active' : ''} onClick={() => check(todo)}>
@@ -57,6 +62,5 @@ const StyledContainer = styled.div`
 `;
 const StyledP = styled.p`
   color: white;
-  }
 `;
 export default Todo;

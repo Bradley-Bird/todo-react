@@ -1,7 +1,7 @@
 import { checkError, client } from './client';
 
 export async function getTodos() {
-  const resp = await client.from('todos').select();
+  const resp = await client.from('todos').select().order('id');
   return checkError(resp);
 }
 
@@ -19,4 +19,9 @@ export async function updateStatus(id) {
     const resp = await client.from('todos').update({ complete: false }).match({ id });
     return checkError(resp);
   }
+}
+
+export async function deleteCompleted() {
+  const resp = await client.from('todos').delete().match({ complete: true });
+  return checkError(resp);
 }

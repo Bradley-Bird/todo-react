@@ -67,7 +67,7 @@ const StyledContainer = styled.div`
   }
 `;
 const StyledP = styled.p`
-  color: white;
+  color: #271e1e;
 `;
 //added secret
 export default Todo;

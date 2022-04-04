@@ -69,5 +69,5 @@ const StyledContainer = styled.div`
 const StyledP = styled.p`
   color: white;
 `;
-//added secrets
+//added secret
 export default Todo;

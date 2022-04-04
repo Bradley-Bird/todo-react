@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import { deleteCompleted, getTodos, updateStatus, updateTodos } from '../services/todo';
 import styled from 'styled-components';
+import { logout } from '../services/auth';
 
-function Todo() {
+function Todo({ setCurrentUser }) {
   const [todos, setTodos] = useState([]);
   const [newTodo, setNewTodo] = useState('');
   //this state adds a layer between the typing and the click
@@ -32,8 +33,13 @@ function Todo() {
     await deleteCompleted();
     setClicked([]);
   };
+  const handleLogout = async () => {
+    await logout();
+    setCurrentUser('');
+  };
   return (
     <div>
+      <span onClick={handleLogout}>logout</span>
       <form action="">
         <input
           type="text"

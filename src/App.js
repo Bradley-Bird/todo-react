@@ -12,7 +12,9 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Switch>
-          <Route path="/todo">{currentUser ? <Todo /> : <Redirect to="/" />}</Route>
+          <Route path="/todo">
+            {currentUser ? <Todo {...{ setCurrentUser }} /> : <Redirect to="/" />}
+          </Route>
           <Route path="/">
             {currentUser ? <Redirect to="/todo" /> : <Home {...{ setCurrentUser }} />}
           </Route>
